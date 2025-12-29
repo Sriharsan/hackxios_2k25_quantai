@@ -11,7 +11,7 @@ services:
 
     envVars:
       - key: PYTHON_VERSION
-        value: 3.9.18
+        value: 3.11
 
       - key: ALPHA_VANTAGE_API_KEY
         sync: false
