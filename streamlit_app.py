@@ -4,7 +4,10 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import sys
+
 import os
+os.environ["MPLCONFIGDIR"] = "/tmp"
+
 from pathlib import Path
 import logging
 import plotly.graph_objects as go
