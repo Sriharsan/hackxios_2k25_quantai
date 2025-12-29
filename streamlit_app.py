@@ -6,6 +6,8 @@ import numpy as np
 import sys
 
 import os
+
+from src.blockchain.ethereum_tracker import show_ethereum_tracking_tab
 os.environ["MPLCONFIGDIR"] = "/tmp"
 
 from pathlib import Path
@@ -16,10 +18,9 @@ import plotly.express as px
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
-# Add src to Python path
-current_dir = Path(__file__).parent
-src_dir = current_dir / "src"
-sys.path.insert(0, str(src_dir))
+# Add project root to Python path (IMPORTANT)
+project_root = Path(__file__).resolve().parent
+sys.path.insert(0, str(project_root))
 
 # Set page config
 st.set_page_config(
@@ -36,6 +37,8 @@ if 'portfolio_template' not in st.session_state:
     st.session_state.portfolio_template = 'balanced'
 if 'analysis_data' not in st.session_state:
     st.session_state.analysis_data = None
+if 'portfolio_value' not in st.session_state:
+    st.session_state.portfolio_value = 1_000_000
 
 def safe_import():
     """Safe import of all modules with proper error handling"""
@@ -47,7 +50,8 @@ def safe_import():
         from src.data.data_loader import data_loader
         from src.visualization.charts import chart_generator
         from src.visualization.dashboards import dashboard
-        
+        from src.blockchain.ethereum_tracker import show_ethereum_tracking_tab
+
         # Initialize portfolio builder with market data
         portfolio_builder = InstitutionalPortfolioBuilder(market_data_provider)
         
@@ -461,14 +465,15 @@ def main():
         show_enhanced_sidebar(market_data, portfolio_builder)
     
     # Main content tabs
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
         "🏛️ Institutional Dashboard", 
         "📊 Portfolio Builder",
-        "🔬 Advanced Optimization",  # NEW TAB
+        "🔬 Advanced Optimization", 
         "⚡ Market Analysis", 
         "🤖 AI Insights", 
         "⚠️ Risk Management",
-        "🌍 Global Markets"
+        "🌍 Global Markets",
+        "🔗 Blockchain Tracking"
     ])
     
     with tab1:
@@ -494,6 +499,9 @@ def main():
         
     with tab7:
         show_global_markets(market_data)
+        
+    with tab8:
+        show_ethereum_tracking_tab() 
 
 def display_api_status(config):
     

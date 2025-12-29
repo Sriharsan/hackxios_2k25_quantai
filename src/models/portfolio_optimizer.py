@@ -6,6 +6,8 @@ from scipy.optimize import minimize
 from typing import Dict, List, Optional, Tuple
 import logging
 
+from src import data
+
 class InstitutionalPortfolioBuilder:
     """BlackRock-level portfolio construction integrating ALL advanced optimization methods"""
     
@@ -662,9 +664,16 @@ class InstitutionalPortfolioBuilder:
         for symbol in symbols:
             try:
                 data = self.market_data.get_stock_data(symbol, period)
-                if not data.empty and 'Daily_Return' in data.columns:
+                if not data.empty:
+                    data = data.copy()
+
+                    # 🔧 FORCE Daily_Return creation
+                    if 'Daily_Return' not in data.columns and 'Close' in data.columns:
+                        data['Daily_Return'] = data['Close'].pct_change()
+
                     returns = data['Daily_Return'].dropna()
-                    if len(returns) > 50:  # Minimum data requirement
+                    
+                    if len(returns) >= 10:  # Minimum data requirement
                         # Ensure timezone-naive index
                         returns.index = returns.index.tz_localize(None)
                         returns_dict[symbol] = returns
@@ -677,7 +686,7 @@ class InstitutionalPortfolioBuilder:
         # Create aligned returns matrix
         returns_df = pd.DataFrame(returns_dict)
         returns_df.index = returns_df.index.tz_localize(None)  # enforce tz-naive
-        returns_df = returns_df.dropna()
+        returns_df = returns_df.dropna(how="any")
 
         return returns_df
 
