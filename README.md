@@ -72,6 +72,7 @@ Data Sources: Alpha Vantage, FRED, yfinance
             PORTFOLIO_CONTRACT_ADDRESS=0x...
 
 **Quick Start:**
+
             git clone https://github.com/yourusername/quantai-portfolio-manager.git
             cd quantai-portfolio-manager
             
@@ -82,8 +83,10 @@ Data Sources: Alpha Vantage, FRED, yfinance
             streamlit run streamlit_app.py
 
 **AI Models:**
+
       1.GPT-4 – Market interpretation
       2.FinBERT – Financial sentiment
       3.LSTM – Price forecasting
       4.Ensemble Models – Robust predictions
+
 
