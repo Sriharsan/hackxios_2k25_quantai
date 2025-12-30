@@ -6,8 +6,6 @@ from scipy.optimize import minimize
 from typing import Dict, List, Optional, Tuple
 import logging
 
-from src import data
-
 class InstitutionalPortfolioBuilder:
     """BlackRock-level portfolio construction integrating ALL advanced optimization methods"""
     
