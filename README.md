@@ -72,17 +72,18 @@ Data Sources: Alpha Vantage, FRED, yfinance
             PORTFOLIO_CONTRACT_ADDRESS=0x...
 
 **Quick Start:**
-git clone https://github.com/yourusername/quantai-portfolio-manager.git
-cd quantai-portfolio-manager
-
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-
-pip install -r requirements.txt
-streamlit run streamlit_app.py
+            git clone https://github.com/yourusername/quantai-portfolio-manager.git
+            cd quantai-portfolio-manager
+            
+            python -m venv venv
+            source venv/bin/activate  # Windows: venv\Scripts\activate
+            
+            pip install -r requirements.txt
+            streamlit run streamlit_app.py
 
 **AI Models:**
-      GPT-4 – Market interpretation
-      FinBERT – Financial sentiment
-      LSTM – Price forecasting
-      Ensemble Models – Robust predictions
+      1.GPT-4 – Market interpretation
+      2.FinBERT – Financial sentiment
+      3.LSTM – Price forecasting
+      4.Ensemble Models – Robust predictions
+
