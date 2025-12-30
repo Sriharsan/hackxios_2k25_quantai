@@ -8,13 +8,8 @@
 - 4GB+ RAM recommended
 
 ### Setup Steps
-1. **Clone Repository**
-   ```bash
-   git clone https://github.com/Sriharsan/ai-portfolio-manager.git
-   cd ai-portfolio-manager
-   ```
 
-2. **Create Virtual Environment**
+1. **Create Virtual Environment**
    ```bash
    python -m venv venv
    source venv/bin/activate  # Linux/Mac
@@ -22,18 +17,18 @@
    venv\Scripts\activate  # Windows
    ```
 
-3. **Install Dependencies**
+2. **Install Dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Setup Environment Variables**
+3. **Setup Environment Variables**
    ```bash
    cp .env.template .env
    # Edit .env with your API keys
    ```
 
-5. **Run Application**
+4. **Run Application**
    ```bash
    streamlit run streamlit_app.py
    ```
@@ -167,4 +162,5 @@ docker run -p 8501:8501 --env-file .env ai-portfolio-manager
 - Docker: Use `docker logs <container_id>`
 
 ### Health Checks
+
 The application includes health check endpoints for monitoring deployment status.
