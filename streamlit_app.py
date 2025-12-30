@@ -30,6 +30,520 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# Custom Color Palette Design System
+st.markdown("""
+<style>
+    /* Import Professional Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+    
+    /* Custom Color Palette */
+    :root {
+        /* Primary Colors from Palette */
+        --oceanic-noir: #172B36;
+        --nocturnal-expedition: #11645A;
+        --arctic-powder: #F1F0F4;
+        --mystic-mint: #09E8E3;
+        --forsythia: #FFC801;
+        --deep-saffron: #FF9932;
+        
+        /* Background Colors */
+        --bg-light: #F1F0F4;
+        --bg-white: #FFFFFF;
+        --bg-dark: #172B36;
+        --bg-teal: #11645A;
+        
+        /* Text Colors */
+        --text-dark: #172B36;
+        --text-gray: #64748B;
+        --text-light: #94A3B8;
+        --text-white: #FFFFFF;
+        
+        /* Accent Colors */
+        --accent-cyan: #09E8E3;
+        --accent-yellow: #FFC801;
+        --accent-orange: #FF9932;
+        
+        /* Status Colors */
+        --success: #09E8E3;
+        --warning: #FFC801;
+        --danger: #FF9932;
+        
+        /* Border Colors */
+        --border-light: #E2E8F0;
+        --border-teal: #11645A;
+    }
+    
+    /* Main App - Light Background */
+    .stApp {
+        background: var(--bg-light);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    /* Content Container */
+    .main .block-container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        max-width: 1400px;
+        background: var(--bg-light);
+    }
+    
+    /* Professional Typography */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        color: var(--text-dark);
+        letter-spacing: -0.02em;
+    }
+    
+    p, span, div {
+        font-family: 'Inter', sans-serif;
+        color: var(--text-gray);
+    }
+    
+    /* Global Text Color Overrides */
+    .stMarkdown, .stText {
+        color: var(--oceanic-noir) !important;
+    }
+    
+    /* Ensure all text in main content is visible */
+    .main .block-container p,
+    .main .block-container span,
+    .main .block-container div {
+        color: var(--oceanic-noir) !important;
+    }
+    
+    /* Headings - Force Oceanic Noir */
+    .main h1, .main h2, .main h3, .main h4, .main h5, .main h6,
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--oceanic-noir) !important;
+    }
+    
+    /* Exceptions: allow card/box headings to use mystic/arctic palette */
+    .sidebar-card h1, .sidebar-card h2, .sidebar-card h3,
+    .custom-gradient-card h1, .custom-gradient-card h2, .custom-gradient-card h3,
+    .custom-white-card h1, .custom-white-card h2, .custom-white-card h3 {
+        color: var(--mystic-mint) !important;
+    }
+
+    .sidebar-card p, .custom-gradient-card p, .custom-white-card p {
+        color: var(--arctic-powder) !important;
+    }
+    /* All markdown content */
+    .stMarkdown p, .stMarkdown span, .stMarkdown div,
+    [data-testid="stMarkdownContainer"] p,
+    [data-testid="stMarkdownContainer"] span,
+    [data-testid="stMarkdownContainer"] div {
+        color: var(--oceanic-noir) !important;
+    }
+    
+    /* Expander text */
+    .streamlit-expanderHeader,
+    .streamlit-expanderHeader p,
+    .streamlit-expanderHeader span {
+        color: var(--oceanic-noir) !important;
+        font-weight: 600;
+    }
+    
+    /* Radio and Checkbox labels in main content */
+    .stRadio label,
+    .stCheckbox label,
+    .stRadio > label,
+    .stCheckbox > label {
+        color: var(--oceanic-noir) !important;
+        font-weight: 500;
+    }
+    
+    /* Select box labels in main content */
+    .stSelectbox label,
+    .stSelectbox > label {
+        color: var(--oceanic-noir) !important;
+        font-weight: 600;
+    }
+    
+    /* All button text - Force White */
+    button, .stButton button, .stButton > button,
+    button span, .stButton button span, .stButton > button span,
+    button div, .stButton button div, .stButton > button div,
+    button p, .stButton button p, .stButton > button p {
+        color: white !important;
+    }
+    
+    /* Warning/Info boxes - Force colors */
+    .stAlert,
+    [data-baseweb="notification"] {
+        border-left: 4px solid var(--mystic-mint) !important;
+        background: rgba(9, 232, 227, 0.1) !important;
+    }
+    
+    .stAlert p, .stAlert span, .stAlert div,
+    [data-baseweb="notification"] p,
+    [data-baseweb="notification"] span,
+    [data-baseweb="notification"] div {
+        color: var(--mystic-mint) !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Info boxes */
+    [data-testid="stNotification"],
+    [data-testid="stNotification"] p,
+    [data-testid="stNotification"] span {
+        color: var(--mystic-mint) !important;
+    }
+    
+    /* Success/Warning/Error messages */
+    .stSuccess, .stWarning, .stError, .stInfo {
+        color: var(--oceanic-noir) !important;
+        border-left: 4px solid var(--mystic-mint) !important;
+    }
+    
+    .stSuccess p, .stWarning p, .stError p, .stInfo p,
+    .stSuccess span, .stWarning span, .stError span, .stInfo span {
+        color: var(--mystic-mint) !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Text in main content area */
+    .element-container p,
+    .element-container span,
+    .element-container div {
+        color: var(--oceanic-noir) !important;
+    }
+    
+    /* Subheaders */
+    .stSubheader, .stSubheader p {
+        color: var(--oceanic-noir) !important;
+    }
+    
+    /* Caption text */
+    .stCaption, .stCaption p {
+        color: var(--nocturnal-expedition) !important;
+    }
+    
+    /* Vibrant Metric Cards with Custom Colors */
+    [data-testid="metric-container"] {
+        background: var(--bg-white);
+        border: none;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 8px rgba(23, 43, 54, 0.1);
+        transition: all 0.3s ease;
+        border-left: 4px solid var(--mystic-mint);
+    }
+    
+    [data-testid="metric-container"]:hover {
+        box-shadow: 0 8px 24px rgba(9, 232, 227, 0.2);
+        transform: translateY(-4px);
+        border-left-color: var(--forsythia);
+    }
+    
+    /* Metric Labels */
+    [data-testid="metric-container"] label {
+        color: var(--mystic-mint) !important;
+        font-size: 0.75rem !important;
+        font-weight: 700 !important;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    /* Metric Values */
+    [data-testid="metric-container"] [data-testid="stMetricValue"] {
+        color: var(--mystic-mint) !important;
+        font-family: 'JetBrains Mono', monospace !important;
+        font-size: 2.25rem !important;
+        font-weight: 800 !important;
+        line-height: 1.2 !important;
+    }
+    
+    /* Metric Delta */
+    [data-testid="metric-container"] [data-testid="stMetricDelta"] {
+        font-family: 'JetBrains Mono', monospace !important;
+        font-weight: 700 !important;
+        font-size: 0.875rem !important;
+    }
+    
+    /* Vibrant Buttons with Mystic Mint */
+    .stButton > button {
+        background: linear-gradient(135deg, var(--mystic-mint) 0%, var(--nocturnal-expedition) 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 700;
+        font-size: 0.875rem;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 8px rgba(9, 232, 227, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    
+    .stButton > button:hover {
+        background: linear-gradient(135deg, var(--forsythia) 0%, var(--deep-saffron) 100%);
+        box-shadow: 0 4px 12px rgba(255, 200, 1, 0.4);
+        transform: translateY(-2px);
+    }
+    
+    /* Professional Tabs */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 8px;
+        background: var(--bg-white);
+        padding: 0.5rem;
+        border-radius: 10px;
+        border: 1px solid var(--border-light);
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        border-radius: 6px;
+        padding: 0.75rem 1.5rem;
+        background: transparent;
+        border: none;
+        color: var(--nocturnal-expedition);
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }
+    
+    .stTabs [data-baseweb="tab"]:hover {
+        background: var(--bg-light);
+        color: var(--oceanic-noir);
+    }
+    
+    /* Active Tab - Force Consistent Styling */
+    .stTabs [aria-selected="true"],
+    .stTabs [data-baseweb="tab"][aria-selected="true"],
+    button[role="tab"][aria-selected="true"] {
+        background: linear-gradient(135deg, var(--mystic-mint) 0%, var(--nocturnal-expedition) 100%) !important;
+        color: white !important;
+    }
+    
+    /* Tab Panel Content */
+    .stTabs [data-baseweb="tab-panel"] {
+        padding-top: 1.5rem;
+    }
+    
+    /* Tab Text - Ensure Visibility */
+    .stTabs [data-baseweb="tab"] > div,
+    .stTabs [aria-selected="true"] > div,
+    button[role="tab"] > div {
+        color: inherit !important;
+    }
+    
+    /* Force all active tabs to have same background */
+    .stTabs button[aria-selected="true"] {
+        background: linear-gradient(135deg, var(--mystic-mint) 0%, var(--nocturnal-expedition) 100%) !important;
+    }
+    
+    /* Dark Sidebar with Oceanic Noir */
+    [data-testid="stSidebar"] {
+        background: var(--oceanic-noir);
+        border-right: 1px solid var(--nocturnal-expedition);
+    }
+    
+    [data-testid="stSidebar"] .stSelectbox label,
+    [data-testid="stSidebar"] .stSlider label,
+    [data-testid="stSidebar"] .stNumberInput label,
+    [data-testid="stSidebar"] .stRadio label,
+    [data-testid="stSidebar"] .stCheckbox label {
+        color: var(--mystic-mint) !important;
+        font-weight: 600 !important;
+        font-size: 0.875rem !important;
+    }
+    
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] span,
+    [data-testid="stSidebar"] div {
+        color: var(--arctic-powder) !important;
+    }
+    
+    /* Sidebar Radio and Checkbox Text */
+    [data-testid="stSidebar"] .stRadio > label > div,
+    [data-testid="stSidebar"] .stCheckbox > label > div {
+        color: var(--arctic-powder) !important;
+    }
+    
+    /* Sidebar Select Box Options */
+    [data-testid="stSidebar"] .stSelectbox > div > div {
+        background: var(--nocturnal-expedition);
+        border: 1px solid var(--mystic-mint);
+        color: var(--arctic-powder) !important;
+    }
+    
+    /* Sidebar Input Fields */
+    [data-testid="stSidebar"] input {
+        background: var(--nocturnal-expedition) !important;
+        border: 1px solid var(--mystic-mint) !important;
+        color: var(--arctic-powder) !important;
+    }
+    
+    /* Sidebar Number Input */
+    [data-testid="stSidebar"] .stNumberInput input {
+        color: var(--arctic-powder) !important;
+    }
+    
+    /* Dropdown Menu Options */
+    [data-testid="stSidebar"] [role="option"] {
+        color: var(--arctic-powder) !important;
+        background: var(--nocturnal-expedition) !important;
+    }
+    
+    [data-testid="stSidebar"] [role="option"]:hover {
+        background: var(--oceanic-noir) !important;
+        color: var(--mystic-mint) !important;
+    }
+    
+    /* Selected Option in Dropdown */
+    [data-testid="stSidebar"] [aria-selected="true"] {
+        background: var(--oceanic-noir) !important;
+        color: var(--mystic-mint) !important;
+    }
+    
+    /* Sliders with Mystic Mint */
+    .stSlider > div > div > div {
+        background: var(--mystic-mint);
+    }
+    
+    /* Professional Data Tables */
+    .dataframe {
+        border: 1px solid var(--border-light) !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+        background: var(--bg-white) !important;
+    }
+    
+    .dataframe thead tr {
+        background: var(--oceanic-noir) !important;
+    }
+    
+    .dataframe thead th {
+        color: var(--mystic-mint) !important;
+        font-weight: 700 !important;
+        text-transform: uppercase;
+        font-size: 0.75rem !important;
+        letter-spacing: 0.1em;
+        padding: 1rem !important;
+        border: none !important;
+    }
+    
+    .dataframe tbody tr {
+        border-bottom: 1px solid var(--border-light) !important;
+    }
+    
+    .dataframe tbody tr:hover {
+        background: var(--bg-light) !important;
+    }
+    
+    .dataframe tbody td {
+        color: var(--text-dark) !important;
+        padding: 0.875rem !important;
+        font-family: 'JetBrains Mono', monospace !important;
+        font-size: 0.875rem !important;
+    }
+    
+    /* Green/Red Text in Tables */
+    .positive-change {
+        color: var(--mystic-mint) !important;
+        font-weight: 600 !important;
+    }
+    
+    .negative-change {
+        color: var(--deep-saffron) !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Status Indicators with Mystic Mint */
+    .status-indicator {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-right: 8px;
+        animation: pulse 2s ease-in-out infinite;
+    }
+    
+    .status-live {
+        background: var(--mystic-mint);
+        box-shadow: 0 0 10px var(--mystic-mint);
+    }
+    
+    @keyframes pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.7; transform: scale(1.1); }
+    }
+    
+    /* Professional White Cards */
+    .pro-card {
+        background: var(--bg-white);
+        border: 1px solid var(--border-light);
+        border-left: 4px solid var(--mystic-mint);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    
+    .pro-card:hover {
+        box-shadow: 0 4px 16px rgba(9, 232, 227, 0.2);
+        border-left-color: var(--forsythia);
+    }
+    
+    /* Colorful Badges */
+    .badge {
+        display: inline-block;
+        padding: 0.375rem 0.875rem;
+        border-radius: 16px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    
+    .badge-success {
+        background: rgba(9, 232, 227, 0.15);
+        color: var(--nocturnal-expedition);
+        border: 1px solid var(--mystic-mint);
+    }
+    
+    .badge-warning {
+        background: rgba(255, 200, 1, 0.15);
+        color: #92400E;
+        border: 1px solid var(--forsythia);
+    }
+    
+    .badge-danger {
+        background: rgba(255, 153, 50, 0.15);
+        color: #991B1B;
+        border: 1px solid var(--deep-saffron);
+    }
+    
+    .badge-info {
+        background: rgba(17, 100, 90, 0.15);
+        color: var(--nocturnal-expedition);
+        border: 1px solid var(--nocturnal-expedition);
+    }
+    
+    /* Chart Containers */
+    .js-plotly-plot {
+        background: var(--bg-white) !important;
+        border-radius: 12px;
+        padding: 1rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        border-left: 4px solid var(--mystic-mint);
+    }
+    
+    /* Expander Headers */
+    .streamlit-expanderHeader {
+        background: var(--bg-white);
+        border-left: 4px solid var(--mystic-mint);
+        border-radius: 8px;
+        color: var(--oceanic-noir) !important;
+        font-weight: 600;
+    }
+    
+    .streamlit-expanderHeader:hover {
+        border-left-color: var(--forsythia);
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # Initialize session state
 if 'portfolio' not in st.session_state:
     st.session_state.portfolio = {}
@@ -312,7 +826,19 @@ def show_advanced_optimization_results_safe(result, method_name):
                     values=list(valid_weights.values()),
                     hole=0.3
                 )])
-                fig_pie.update_layout(title="Portfolio Allocation", height=400)
+                fig_pie.update_layout(
+                    title="Portfolio Allocation",
+                    height=500,
+                    showlegend=True,
+                    legend=dict(
+                        orientation="h",
+                        yanchor="bottom",
+                        y=-0.2,
+                        xanchor="center",
+                        x=0.5
+                    ),
+                    margin=dict(l=20, r=20, t=60, b=100)
+                )
                 st.plotly_chart(fig_pie, use_container_width=True)
             except Exception as e:
                 st.write("Chart display error:", str(e))
@@ -372,7 +898,19 @@ def show_advanced_optimization_results(result, method_name):
             values=list(weights.values()),
             hole=0.3
         )])
-        fig_pie.update_layout(title="Portfolio Allocation", height=400)
+        fig_pie.update_layout(
+            title="Portfolio Allocation",
+            height=500,
+            showlegend=True,
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=-0.2,
+                xanchor="center",
+                x=0.5
+            ),
+            margin=dict(l=20, r=20, t=60, b=100)
+        )
         st.plotly_chart(fig_pie, use_container_width=True)
     
     # Performance metrics
@@ -453,9 +991,34 @@ def main():
     if not all([market_data, portfolio_builder]):
         st.stop()
     
-    # Header
-    st.title("🏛️ Institutional AI Portfolio Manager")
-    st.markdown("*BlackRock-level portfolio management with 75+ assets across all major asset classes*")
+    # Custom Color Palette Header
+    st.markdown("""
+    <div class='custom-white-card' style='background: white; border: 1px solid #E2E8F0; border-left: 4px solid #09E8E3; border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(23, 43, 54, 0.1);'>
+        <div style='display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;'>
+            <div>
+                <h1 style='font-size: 1.75rem; font-weight: 800; margin: 0;'>🏛️ QuantAI Portfolio Manager</h1>
+                <p style='font-size: 0.875rem; color: #11645A; margin: 0.25rem 0 0 0; font-weight: 600;'>Institutional-Grade AI Portfolio Management • Real-Time Analytics</p>
+            </div>
+            <div style='display: flex; gap: 1.5rem; align-items: center; margin-top: 1rem;'>
+                <div style='display: flex; align-items: center; gap: 0.5rem;'>
+                    <span class='status-indicator status-live'></span>
+                    <div>
+                        <div style='font-size: 0.75rem; color: #11645A; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;'>Market Status</div>
+                        <div style='color: var(--mystic-mint); font-family: JetBrains Mono, monospace; font-weight: 700; font-size: 0.875rem;'>Live</div>
+                    </div>
+                </div>
+                <div style='text-align: center;'>
+                    <div style='font-size: 0.75rem; color: #11645A; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;'>Assets</div>
+                    <div style='color: var(--mystic-mint); font-family: JetBrains Mono, monospace; font-weight: 700; font-size: 0.875rem;'>75+</div>
+                </div>
+                <div style='text-align: center;'>
+                    <div style='font-size: 0.75rem; color: #11645A; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;'>Last Update</div>
+                    <div style='color: var(--mystic-mint); font-family: JetBrains Mono, monospace; font-weight: 700; font-size: 0.875rem;'>Real-time</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
     # Display API status
     display_api_status(config)
@@ -528,8 +1091,15 @@ def display_api_status(config):
 
 def show_enhanced_sidebar(market_data, portfolio_builder):
     
-    st.header("🏛️ Portfolio Configuration")
-    
+    # ADD this CSS at the top of show_enhanced_sidebar():
+    # Custom Palette Sidebar Header
+    st.markdown("""
+    <div class='sidebar-card' style='background: linear-gradient(135deg, #11645A 0%, #172B36 100%); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem; text-align: center; border: 1px solid var(--mystic-mint); max-width: 320px; margin-left: auto; margin-right: auto;'>
+        <h2 style='color: var(--mystic-mint); font-size: 1.25rem; font-weight: 800; margin: 0; text-align: center;'>⚙️ Portfolio Builder</h2>
+        <p style='color: var(--arctic-powder); font-size: 0.875rem; margin: 0.5rem 0 0 0; font-weight: 500;'>Configure Your Strategy</p>
+    </div>
+    """, unsafe_allow_html=True)
+        
     # Portfolio creation methods
     creation_method = st.selectbox(
         "Portfolio Creation Method:",
@@ -843,32 +1413,49 @@ def get_or_create_analysis(data_loader):
     else:
         return st.session_state.analysis_data
 
+# Professional Metric Cards (using Streamlit native with global styling)
 def show_key_metrics(analysis):
-    
     metrics = analysis.get('performance_metrics', {})
     
     if metrics and 'error' not in metrics:
         col1, col2, col3, col4, col5 = st.columns(5)
         
         with col1:
-            total_return = metrics.get('total_return', 0) * 100
-            st.metric("Total Return", f"{total_return:.1f}%")
+            st.metric(
+                label="📈 Total Return",
+                value=f"{metrics.get('total_return', 0)*100:.2f}%",
+                delta=f"{metrics.get('total_return', 0)*100:.1f}%"
+            )
         
         with col2:
-            sharpe = metrics.get('sharpe_ratio', 0)
-            st.metric("Sharpe Ratio", f"{sharpe:.2f}")
+            st.metric(
+                label="⚡ Sharpe Ratio",
+                value=f"{metrics.get('sharpe_ratio', 0):.3f}",
+                delta="Good" if metrics.get('sharpe_ratio', 0) > 1 else "Fair"
+            )
         
         with col3:
-            drawdown = metrics.get('max_drawdown', 0) * 100
-            st.metric("Max Drawdown", f"{drawdown:.1f}%")
+            st.metric(
+                label="📉 Max Drawdown",
+                value=f"{metrics.get('max_drawdown', 0)*100:.2f}%",
+                delta=f"{metrics.get('max_drawdown', 0)*100:.1f}%",
+                delta_color="inverse"
+            )
         
         with col4:
-            volatility = metrics.get('volatility', 0) * 100
-            st.metric("Volatility", f"{volatility:.1f}%")
+            st.metric(
+                label="🌊 Volatility",
+                value=f"{metrics.get('volatility', 0)*100:.2f}%",
+                delta=f"{metrics.get('volatility', 0)*100:.1f}%"
+            )
         
         with col5:
-            calmar = metrics.get('calmar_ratio', 0)
-            st.metric("Calmar Ratio", f"{calmar:.2f}")
+            st.metric(
+                label="🎯 Calmar Ratio",
+                value=f"{metrics.get('calmar_ratio', 0):.3f}",
+                delta="Strong" if metrics.get('calmar_ratio', 0) > 1 else "Moderate"
+            )
+
 
 def show_performance_chart(analysis, chart_generator):
     
@@ -955,25 +1542,28 @@ def show_sector_breakdown():
                         title="Sector Allocation")
             st.plotly_chart(fig, use_container_width=True)
 
+# Custom Palette AI Insights Card
 def show_ai_insights_card(analysis):
-    
-    st.subheader("🤖 AI Market Intelligence")
-    
     insights = analysis.get('ai_insights', 'AI analysis is processing...')
     
     st.markdown(f"""
-    <div style="
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 1.5rem;
-        border-radius: 10px;
-        color: white;
-        margin: 1rem 0;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    ">
-        <h4 style="margin-top: 0; color: white;">🧠 AI Analysis</h4>
-        <p style="margin-bottom: 0; line-height: 1.6; font-size: 16px;">{insights}</p>
+    <div class='custom-gradient-card' style='background: linear-gradient(135deg, #11645A 0%, #172B36 100%); border-radius: 12px; padding: 2rem; margin: 2rem 0; box-shadow: 0 4px 16px rgba(9, 232, 227, 0.3); border: 2px solid var(--mystic-mint);'>
+        <div style='display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;'>
+            <div style='font-size: 2.5rem;'>🧠</div>
+            <div>
+                <h3 style='color: var(--mystic-mint); margin: 0; font-size: 1.5rem; font-weight: 800;'>AI Market Intelligence</h3>
+                <p style='color: var(--arctic-powder); margin: 0.5rem 0 0 0; font-size: 0.875rem;'>
+                    <span style='background: var(--forsythia); padding: 0.375rem 0.875rem; border-radius: 16px; margin-right: 0.5rem; color: var(--mystic-mint); font-weight: 700; font-size: 0.75rem;'>GPT-4</span>
+                    <span style='background: var(--deep-saffron); padding: 0.375rem 0.875rem; border-radius: 16px; margin-right: 0.5rem; color: white; font-weight: 700; font-size: 0.75rem;'>FinBERT</span>
+                    <span style='background: var(--mystic-mint); padding: 0.375rem 0.875rem; border-radius: 16px; color: var(--arctic-powder); font-weight: 700; font-size: 0.75rem;'>Real-time</span>
+                </p>
+            </div>
+        </div>
+        <div style='color: white; line-height: 1.8; font-size: 1.05rem; font-weight: 500;'>{insights}</div>
     </div>
     """, unsafe_allow_html=True)
+
+
 
 def show_portfolio_builder(portfolio_builder, market_data):
     
@@ -1259,7 +1849,16 @@ def show_technical_analysis(stock_data, symbol):
         fig.update_layout(
             title=f"{symbol} Price Chart with Technical Indicators",
             yaxis_title="Price ($)",
-            height=500
+            height=600,
+            margin=dict(l=50, r=50, t=80, b=120),
+            showlegend=True,
+            legend=dict(
+                orientation="h",
+                yanchor="top",
+                y=-0.15,
+                xanchor="center",
+                x=0.5
+            )
         )
         
         st.plotly_chart(fig, use_container_width=True)

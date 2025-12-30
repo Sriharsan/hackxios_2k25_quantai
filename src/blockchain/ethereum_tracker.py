@@ -133,15 +133,30 @@ def show_ethereum_tracking_tab():
     
     st.subheader("🔗 Blockchain Portfolio Tracking")
     
-    st.info("""
-    **Ethereum-Anchored Audit Ledger**
-    
-    This feature provides blockchain-style immutable record-keeping for your portfolio:
-    - Cryptographic hashing of all portfolio states
-    - Immutable audit trail
-    - Chain integrity verification
-    - Ready for Ethereum smart contract integration
-    """)
+    # In show_ethereum_tracking_tab(), REPLACE the info box with:
+    st.markdown("""
+    <div style='background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); padding: 2rem; border-radius: 15px; color: white; margin-bottom: 2rem;'>
+        <h3 style='margin: 0; color: white;'>⛓️ Ethereum-Anchored Audit Ledger</h3>
+        <p style='color: #dbeafe; margin-top: 1rem; line-height: 1.6;'>
+            Your portfolio states are cryptographically hashed and anchored on Ethereum Sepolia testnet.
+            Every transaction is immutable, verifiable, and transparent.
+        </p>
+        <div style='display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem;'>
+            <div style='background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px;'>
+                <div style='font-size: 1.5rem;'>🔒</div>
+                <div style='font-size: 0.85rem; margin-top: 0.5rem;'>Cryptographically Secure</div>
+            </div>
+            <div style='background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px;'>
+                <div style='font-size: 1.5rem;'>✅</div>
+                <div style='font-size: 0.85rem; margin-top: 0.5rem;'>Chain Integrity Verified</div>
+            </div>
+            <div style='background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px;'>
+                <div style='font-size: 1.5rem;'>🌐</div>
+                <div style='font-size: 0.85rem; margin-top: 0.5rem;'>Publicly Auditable</div>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
     # Initialize tracker
     if 'eth_tracker' not in st.session_state:
